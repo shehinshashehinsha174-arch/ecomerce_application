@@ -8,11 +8,18 @@
 
 <div style="margin-top: 150px;">
     <h1>login page</h1>
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Username" name="username" required><br>
+        <input type="password" placeholder="Password" name="password" required> <br>
+        <a href="{% url 'signup' %}">Sign Up</a>
+        
 
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password"> <br>
-        <button>Sign Up</button>
+
+    
         <button type="submit">Login</button>
+        <p>{{ error }}</p>
+        </form>
 </div>
 
 

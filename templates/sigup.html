@@ -6,17 +6,17 @@
 
 <h1>Sign Up</h1>
 
-<form method="post" action="" >
+<form method="post" action="/signup/" >
+ {% csrf_token %}
 
-
-<input type="First name"placeholder="First Name" name="Firstname"><br>
-<input type="Last name"placeholder="Last Name" name="Lastname"><br>
-<input type="User name"placeholder="Username" name="Username"><br>
-<input type="Email"placeholder="Email" name="Email"><br>
-<input type="Password"placeholder="Password" name="Password"><br>
-<input type="Confirm Password"placeholder="Confirm Password" name="ConfirmPassword"><br>
+<input type="First name"placeholder="First Name" name="Firstname" required><br>
+<input type="Last name"placeholder="Last Name" name="Lastname" required><br>
+<input type="User name"placeholder="Username" name="Username" required><br>
+<input type="Email"placeholder="Email" name="Email" required><br>
+<input type="Password"placeholder="Password" name="Password" required><br>
+<input type="Password" placeholder="Confirm Password" name="ConfirmPassword" required><br>
 <button type="submit">Sign Up</button >
-
+<p style="color:red">{{ error }}</p>
 </form>
 
 </div>
