@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from shop.models import Product
 
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 
 # Create your views here.
 def home(request):
@@ -46,10 +46,20 @@ def sign_up(request):
         user = User.objects.create_user(username=uname, email=email, password=password, first_name=fname, last_name=lname)
         user.save()
         return redirect("login")
-        
-       
-
-
-
-
+    
     return render(request,"sigup.html")
+    
+
+def sign_out(request):
+    logout(request)
+    return redirect("home")
+        
+
+def product_details(request,p_id):
+    data = Product.objects.get(id=p_id)
+    return render(request,"productdeatails.html",{"data": data})    
+
+
+
+
+    

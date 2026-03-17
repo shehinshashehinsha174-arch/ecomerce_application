@@ -77,7 +77,10 @@
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
                     </div>
+                    
+
                     {% if user.is_authenticated %}
+                    <a href="/logout/" class="nav-item nav-link" id="logout">Logout</a>
                     <a href="/" class="nav-item nav-link">{{ user.first_name }} {{ user.last_name }}</a>
                     {% endif %}
                 </div>
@@ -99,6 +102,16 @@
      {% block content %}
 
      {% endblock %}
+
+     <script>
+        document.getElementById("logout").addEventListener("click", function(event) {
+            event.preventDefault(); 
+            // Prevent the default link behavior
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "/logout/"; // Redirect to the logout URL
+            }
+        });
+     </script>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
