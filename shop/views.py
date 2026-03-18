@@ -4,14 +4,22 @@ from shop.models import Product
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 
+from django.core.paginator import Paginator
+
 # Create your views here.
 def home(request):
-    product = Product.objects.all()
+    product = Product.objects.all().order_by("-created")[0:8]
     return render(request,"index.html",{"products": product})
 
 def all_products(request):#this is allproduct view function which is used to show all the products in the database
-    product = Product.objects.all()
-    return render(request,"all products.html",{"products": product})
+    product = Product.objects.all().order_by("-created")
+    query = request.GET.get("q")
+    if query:
+        product = Product.objects.filter(name__icontains = query).order_by("-created")
+    paginator = Paginator(product, 4)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request,"all products.html",{"page_obj": page_obj})
 
 
 def sign_in(request):

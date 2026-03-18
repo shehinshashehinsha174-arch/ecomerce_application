@@ -29,6 +29,7 @@ urlpatterns = [
     path('signup/',views.sign_up, name='signup'),
     path('logout/',views.sign_out, name='logout'),
     path('productdetails/<int:p_id>/',views.product_details, name='productdetails'),
+   
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
